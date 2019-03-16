@@ -3,12 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <title>11.常见效果2_多TAB点击切换</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #tab li {
+            float: left;
+            list-style: none;
+            width: 80px;
+            height: 40px;
+            line-height: 40px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        #container {
+            position: relative;
+        }
+
+        #content1, #content2, #content3 {
+            width: 300px;
+            height: 100px;
+            padding: 30px;
+            position: absolute;
+            top: 40px;
+            left: 0;
+        }
+
+        #tab1, #content1 {
+            background-color: #ffcc00;
+        }
+
+        #tab2, #content2 {
+            background-color: #ff00cc;
+        }
+
+        #tab3, #content3 {
+            background-color: #00ccff;
+        }
+    </style>
 </head>
+<h2>多Tab点击切换</h2>
+<ul id="tab">
+    <li id="tab1" value="1">10元套餐</li>
+    <li id="tab2" value="2">30元套餐</li>
+    <li id="tab3" value="3">50元包月</li>
+</ul>
+<div id="container">
+    <div id="content1">10元套餐详情:<br>每月套餐内拨打100分钟，超出部分2毛/分钟</div>
+    <div id="content2" style="display: none;">30元套餐详情:<br>每月套餐内拨打300分钟，超出部分1.5毛/分钟</div>
+    <div id="content3" style="display: none;">50元套餐详情:<br>每月无限量随心打</div>
+</div>
 <body>
-1111111111111
-2222222222222
-3333333333333
-4444444444444
-5555555555555
+
+
+<script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.js"></script>
+<script type="text/javascript">
+    var $contents = $('#container>div')         // 设置对象$contents = $('#container>div')
+
+    //方法一:
+    $('#tab>li').click(function () {             // 给3个li加监听,隐式遍历
+        // console.log(this.innerHTML)           // 测试打印监听的li的innerHTML
+        $contents.css('display', 'none')         // 隐藏所有内容div
+        var index = $(this).index()              // 得到当前点击的li在兄弟中的下标
+        // console.log(index,$(this).index())    // 测试打印出index($(this).index())变量的下标
+        $contents[index].style.display = 'block' // 打到对应的内容div,并显示
+        // $($contents[index]).css('display', 'block')
+    })
+
+    //方法二:追求极致方法(适用于数量多个的div，上一种是全部的div被隐藏)
+    var currIndex = 0                                   // 当前显示的内容div的下标
+    $('#tab>li').click(function () {                    // 隐式遍历
+        $contents[currIndex].style.display = 'none'     // 隐藏当前已经显示的内容div
+        var index = $(this).index()                     // 得到当前点击的li的兄弟中的下标
+        $contents[index].style.display = 'block'        // 找到对应的内容div,并显示
+        currIndex = index                               // 更新下标
+    })
+</script>
+
 </body>
 </html>
