@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>11.常见效果2_多TAB点击切换</title>
+    <title>002_常见效果2_多TAB点击切换</title>
     <style>
         * {
             margin: 0;
@@ -73,7 +73,7 @@
         // $($contents[index]).css('display', 'block')
     })
 
-    //方法二:追求极致方法(适用于数量多个的div，上一种是全部的div被隐藏)
+    //方法二:追求极致方法(适用于数量多个的div，上一种是全部的div被隐藏)--推荐方法
     var currIndex = 0                                   // 当前显示的内容div的下标
     $('#tab>li').click(function () {                    // 隐式遍历
         $contents[currIndex].style.display = 'none'     // 隐藏当前已经显示的内容div

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>17_jQuery_常见效果3_回到顶部</title>
+    <title>003_回到顶部</title>
 
     <style>
         #to_top1 {
@@ -41,28 +41,22 @@
 
 <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.js"></script>
 <script type="text/javascript">
+
     $('#to_top1').click(function () {
-        //瞬间滚到顶部
-        $('html,body').scrollTop(0)
+        $('html,body').scrollTop(0)                                     // 瞬间滚到顶部
 
     })
 
     $('#to_top2').click(function () {
-
-        // 总距离
-        var $page = $('html,body')
+        var $page = $('html,body')                                      // 总距离
         var distance = $('html').scrollTop() + $('body').scrollTop()
-        // 总时间
-        var time = 500
-        // 间隔时间
-        var intervalTime = 50
-        var itemDistance = distance/(time/intervalTime)
-        // 使用循环定时器不断滚动
+        var time = 500                                                  // 总时间
+        var intervalTime = 50                                           // 间隔时间
+        var itemDistance = distance / (time / intervalTime)             // 使用循环定时器不断滚动
         var intervalId = setInterval(function () {
             distance -= itemDistance
-            // 到达顶部, 停止定时器
-            if(distance<=0) {
-                distance = 0 //修正
+            if (distance <= 0) {                                        // 到达顶部, 停止定时器
+                distance = 0                                            // 修正
                 clearInterval(intervalId)
             }
             $page.scrollTop(distance)
