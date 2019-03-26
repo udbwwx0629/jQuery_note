@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>009_$工具方法</title>
+</head>
+<body>
+<!--
+1. $.each(): 遍历数组或对象中的数据
+2. $.trim(): 去除字符串两边的空格
+3. $.type(obj): 得到数据的类型
+4. $.isArray(obj): 判断是否是数组
+5. $.isFunction(obj): 判断是否是函数
+6. $.parseJSON(json) : 解析json字符串转换为js对象/数组
+-->
+
+<script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.js"></script>
+<script type="text/javascript">
+    // 1. $.each(): 遍历数组或对象中的数据
+    var obj = {
+        name: 'Tom',
+        setName: function (name) {
+            this.name = name
+        }
+    }
+    $.each(obj, function (key, value) {
+        console.log(key, value)
+    })
+    // 2. $.trim(): 去除字符串两边的空格
+    // 3. $.type(obj): 得到数据的类型
+    console.log($.type($))   //输出function 因为$ === function
+    // 4. $.isArray(obj): 判断是否是数组
+    console.log($.isArray($('body')), $.isArray([]))  //第一个false,第二个true
+    // 5. $.isFunction(obj): 判断是否是函数
+    console.log($.isFunction($))  //true,这个是函数
+    // 6. $.parseJSON(json) : 解析json字符串转换为js对象/数组
+
+    // json对象: {}   json对象===>JS对象
+    var json = '{"name":"Tom","age":12}'
+    console.log($.parseJSON(json))
+
+    //json数组: []    json数组===>JS数组
+    json = '[{"name":"Tom","age":12},{"name":"JACK","age":13}]'
+    console.log($.parseJSON(json))
+
+    /*
+    JSON.parse(jsonString)        json字符串--->js对象/数组
+    JSON.stringify(jsObj/jsArr)   js对象/数组--->json字符串
+     */
+</script>
+</body>
+</html>
